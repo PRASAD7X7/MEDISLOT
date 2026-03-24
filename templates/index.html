@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediSlot | Doctor Appointment Booking System</title>
+    <meta
+      name="description"
+      content="MediSlot helps patients book doctor appointments online across multiple clinics, specialties, and locations."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body data-page="home">
+    <div data-site-header></div>
+
+    <main>
+      <section class="hero-section">
+        <div class="page-shell hero-layout">
+          <div class="hero-copy reveal">
+            <p class="eyebrow">Doctor Appointment Booking System</p>
+            <h1>Book trusted doctors across clinics with MediSlot.</h1>
+            <p class="lead">
+              Compare specialists, select nearby clinics, and book appointments
+              online in a smooth responsive experience built for modern
+              patients.
+            </p>
+            <div class="button-row">
+              <a class="button button-primary" href="/book.html">Book Appointment</a>
+              <a class="button button-secondary" href="/doctors.html">Browse Doctors</a>
+            </div>
+            <div class="hero-metrics" id="hero-metrics"></div>
+          </div>
+
+          <aside class="hero-panel reveal reveal-delay">
+            <div class="floating-card">
+              <p class="card-label">Why patients use MediSlot</p>
+              <h2>One place to find the right doctor and reserve the right slot.</h2>
+              <div class="status-stack">
+                <div class="status-item">
+                  <span class="status-dot online"></span>
+                  <div>
+                    <strong>Live slot visibility</strong>
+                    <span>Check which consultation times are open or already booked.</span>
+                  </div>
+                </div>
+                <div class="status-item">
+                  <span class="status-dot accent"></span>
+                  <div>
+                    <strong>Location-based clinics</strong>
+                    <span>Choose a city and area first, then book the nearest clinic.</span>
+                  </div>
+                </div>
+                <div class="status-item">
+                  <span class="status-dot calm"></span>
+                  <div>
+                    <strong>Persistent booking records</strong>
+                    <span>Appointments are saved through the Python backend in JSON storage.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="page-shell">
+          <div class="section-heading reveal">
+            <p class="section-tag">Welcome</p>
+            <h2>A modern online doctor booking system for patients and clinics.</h2>
+            <p>
+              MediSlot connects patients with dentists, cardiologists, general
+              physicians, dermatologists, and other specialists from different
+              clinics. Everything is designed for fast decisions and easy
+              booking on both desktop and mobile.
+            </p>
+          </div>
+          <div class="feature-grid">
+            <article class="info-card reveal">
+              <p class="mini-tag">01</p>
+              <h3>Find specialists fast</h3>
+              <p>
+                Search doctors by specialty and review clinic, city, and
+                experience in a single glance.
+              </p>
+            </article>
+            <article class="info-card reveal reveal-delay">
+              <p class="mini-tag">02</p>
+              <h3>Book by location</h3>
+              <p>
+                Narrow down clinics by city and area so booking fits real daily
+                travel patterns.
+              </p>
+            </article>
+            <article class="info-card reveal reveal-delay-2">
+              <p class="mini-tag">03</p>
+              <h3>Confirm in seconds</h3>
+              <p>
+                Submit the appointment form, receive confirmation instantly, and
+                keep slot availability accurate for the next patient.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section muted-section">
+        <div class="page-shell">
+          <div class="section-heading reveal">
+            <p class="section-tag">Featured Doctors</p>
+            <h2>Specialists from different clinics and cities.</h2>
+            <p>
+              Doctor cards include name, specialty, clinic, location, and live
+              time-slot availability for today.
+            </p>
+          </div>
+          <div class="card-grid" id="featured-doctors"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="page-shell">
+          <div class="section-heading reveal">
+            <p class="section-tag">Locations</p>
+            <h2>Choose clinics near you before booking.</h2>
+            <p>
+              MediSlot supports booking across multiple clinic branches, helping
+              patients compare nearby options quickly.
+            </p>
+          </div>
+          <div class="location-preview-grid" id="location-preview"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="page-shell">
+          <div class="cta-panel reveal">
+            <div>
+              <p class="section-tag">Start Now</p>
+              <h2>Reserve your next consultation online with confidence.</h2>
+              <p>
+                Search doctors, filter by location, and confirm your appointment
+                through the MediSlot booking form.
+              </p>
+            </div>
+            <div class="button-row">
+              <a class="button button-primary" href="/book.html">Book Now</a>
+              <a class="button button-secondary" href="/locations.html">View Clinics</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="/static/app.js"></script>
+    <script src="/static/home.js"></script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Appointment | MediSlot</title>
+    <meta
+      name="description"
+      content="Book doctor appointments online through MediSlot across multiple clinics and specialties."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body data-page="book">
+    <div data-site-header></div>
+
+    <main>
+      <section class="page-hero">
+        <div class="page-shell page-hero-layout">
+          <div class="page-hero-card reveal">
+            <p class="eyebrow">Book Appointment</p>
+            <h1>Reserve a clinic visit in just a few steps.</h1>
+            <p class="lead">
+              Select the doctor type, clinic location, date, and time slot. The
+              booking is validated by the Python backend before it is confirmed.
+            </p>
+          </div>
+          <aside class="page-hero-side reveal reveal-delay">
+            <h3>What happens next</h3>
+            <p class="contact-copy">
+              After submission, MediSlot stores your appointment and shows a
+              confirmation summary with doctor name, clinic, date, and time.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="page-shell booking-layout">
+          <div class="form-card reveal">
+            <div class="split-head">
+              <div>
+                <p class="section-tag">Appointment Form</p>
+                <h2>Patient Details</h2>
+              </div>
+              <p class="tiny-note">All required fields must be completed.</p>
+            </div>
+
+            <div class="message-box error hidden" id="booking-feedback"></div>
+
+            <form id="booking-form">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="patient-name">Patient Name</label>
+                  <input id="patient-name" name="patientName" type="text" required />
+                </div>
+                <div class="field">
+                  <label for="phone-number">Phone Number</label>
+                  <input id="phone-number" name="phone" type="tel" required />
+                </div>
+                <div class="field">
+                  <label for="doctor-type">Select Doctor Type</label>
+                  <select id="doctor-type" name="doctorType" required>
+                    <option value="">Choose a specialty</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="location-select">Select Location</label>
+                  <select id="location-select" name="location" required>
+                    <option value="">Choose a clinic location</option>
+                  </select>
+                </div>
+                <div class="field field-full">
+                  <label for="doctor-select">Select Doctor</label>
+                  <select id="doctor-select" name="doctorId" required>
+                    <option value="">Choose a doctor</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="appointment-date">Select Date</label>
+                  <input id="appointment-date" name="date" type="date" required />
+                </div>
+                <div class="field">
+                  <label for="time-slot">Select Time Slot</label>
+                  <select id="time-slot" name="time" required>
+                    <option value="">Choose a time slot</option>
+                  </select>
+                </div>
+                <div class="field field-full">
+                  <label>Available Time Slots</label>
+                  <div class="slot-grid" id="slot-grid"></div>
+                  <p class="slot-help">
+                    Booked slots are disabled automatically based on the selected
+                    doctor and date.
+                  </p>
+                </div>
+              </div>
+
+              <div class="button-row">
+                <button class="button button-primary" type="submit">Submit Booking</button>
+                <a class="button button-secondary" href="/doctors.html">View Doctors</a>
+              </div>
+            </form>
+          </div>
+
+          <aside class="summary-stack">
+            <div class="summary-card reveal reveal-delay">
+              <p class="section-tag">Booking Summary</p>
+              <h3>Selected appointment</h3>
+              <ul class="summary-list" id="booking-summary">
+                <li><span>Doctor</span><strong>Not selected</strong></li>
+                <li><span>Clinic</span><strong>Not selected</strong></li>
+                <li><span>Date</span><strong>Not selected</strong></li>
+                <li><span>Time</span><strong>Not selected</strong></li>
+              </ul>
+            </div>
+
+            <div class="summary-card reveal reveal-delay-2">
+              <p class="section-tag">Recent Bookings</p>
+              <h3>Saved by the backend</h3>
+              <ul class="list-clean" id="recent-appointments">
+                <li><span>No appointments yet.</span><strong>Waiting</strong></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="/static/app.js"></script>
+    <script src="/static/booking.js"></script>
+  </body>
+</html>

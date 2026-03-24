@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | MediSlot</title>
+    <meta
+      name="description"
+      content="Contact MediSlot support for clinic onboarding, booking help, or general inquiries."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body data-page="contact">
+    <div data-site-header></div>
+
+    <main>
+      <section class="page-hero">
+        <div class="page-shell page-hero-layout">
+          <div class="page-hero-card reveal">
+            <p class="eyebrow">Contact</p>
+            <h1>Talk to MediSlot support or clinic onboarding.</h1>
+            <p class="lead">
+              Reach out for booking help, partnership questions, or technical
+              support related to the appointment system.
+            </p>
+          </div>
+          <aside class="page-hero-side reveal reveal-delay">
+            <h3>Support hours</h3>
+            <p class="contact-copy">
+              Monday to Saturday, 9:00 AM to 7:00 PM. For emergencies, contact
+              your local emergency service directly.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="page-shell contact-layout">
+          <div class="contact-grid">
+            <article class="contact-card reveal">
+              <p class="mini-tag">Booking Help</p>
+              <h3>Patient Assistance</h3>
+              <p class="contact-copy">support@medislot.in</p>
+              <p class="contact-copy">+91 1800 200 4411</p>
+            </article>
+            <article class="contact-card reveal reveal-delay">
+              <p class="mini-tag">Clinic Onboarding</p>
+              <h3>Partner With Us</h3>
+              <p class="contact-copy">partners@medislot.in</p>
+              <p class="contact-copy">+91 1800 200 5522</p>
+            </article>
+            <article class="contact-card reveal reveal-delay-2">
+              <p class="mini-tag">Head Office</p>
+              <h3>MediSlot Operations</h3>
+              <p class="contact-copy">72 Health Tech Square, Bengaluru</p>
+              <p class="contact-copy">Mon-Sat, 9:00 AM - 7:00 PM</p>
+            </article>
+          </div>
+
+          <div class="form-card reveal">
+            <div class="split-head">
+              <div>
+                <p class="section-tag">Send a Message</p>
+                <h2>We will get back to you shortly.</h2>
+              </div>
+            </div>
+
+            <div class="message-box success hidden" id="contact-feedback"></div>
+
+            <form id="contact-form">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="contact-name">Name</label>
+                  <input id="contact-name" type="text" required />
+                </div>
+                <div class="field">
+                  <label for="contact-email">Email</label>
+                  <input id="contact-email" type="email" required />
+                </div>
+                <div class="field field-full">
+                  <label for="contact-subject">Subject</label>
+                  <input id="contact-subject" type="text" required />
+                </div>
+                <div class="field field-full">
+                  <label for="contact-message">Message</label>
+                  <textarea id="contact-message" required></textarea>
+                </div>
+              </div>
+              <div class="button-row">
+                <button class="button button-primary" type="submit">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="/static/app.js"></script>
+    <script src="/static/contact.js"></script>
+  </body>
+</html>

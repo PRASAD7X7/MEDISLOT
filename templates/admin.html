@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin View | MediSlot</title>
+    <meta
+      name="description"
+      content="Review MediSlot appointments saved by the Python backend."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body data-page="admin">
+    <div data-site-header></div>
+
+    <main>
+      <section class="page-hero">
+        <div class="page-shell page-hero-layout">
+          <div class="page-hero-card reveal">
+            <p class="eyebrow">Admin / Data</p>
+            <h1>Review saved appointments from the backend.</h1>
+            <p class="lead">
+              This page reads the persistent appointment list stored in
+              `data/appointments.json` and surfaced through the Python API.
+            </p>
+          </div>
+          <aside class="page-hero-side reveal reveal-delay">
+            <h3>Storage mode</h3>
+            <p class="contact-copy">
+              Data is stored in JSON so the site works without external
+              dependencies or a separate database server.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="page-shell">
+          <div class="admin-grid">
+            <article class="admin-card reveal">
+              <p class="section-tag">Total Appointments</p>
+              <h3 id="admin-total">0</h3>
+            </article>
+            <article class="admin-card reveal reveal-delay">
+              <p class="section-tag">Today</p>
+              <h3 id="admin-today">0</h3>
+            </article>
+            <article class="admin-card reveal reveal-delay-2">
+              <p class="section-tag">Locations Covered</p>
+              <h3 id="admin-locations">0</h3>
+            </article>
+          </div>
+
+          <div class="admin-card reveal">
+            <div class="split-head">
+              <div>
+                <p class="section-tag">Appointment List</p>
+                <h2>Stored bookings</h2>
+              </div>
+              <div class="button-row">
+                <a class="button button-secondary" href="/book.html">Book Another</a>
+                <a class="button button-secondary" href="/logout">Log Out</a>
+              </div>
+            </div>
+            <p class="table-note">
+              The table updates from the backend appointment list, not from
+              browser-only state. This view is protected by admin login.
+            </p>
+            <div class="empty-state hidden" id="admin-empty">
+              <h3>No appointments yet</h3>
+              <p>Book the first appointment to populate the admin list.</p>
+            </div>
+            <div class="table-wrap" id="admin-table-wrap">
+              <table class="appointment-table">
+                <thead>
+                  <tr>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Clinic</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Booked At</th>
+                  </tr>
+                </thead>
+                <tbody id="appointment-rows"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="/static/app.js"></script>
+    <script src="/static/admin.js"></script>
+  </body>
+</html>

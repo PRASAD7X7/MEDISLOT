@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctors | MediSlot</title>
+    <meta
+      name="description"
+      content="Browse MediSlot doctors by specialty, clinic, location, and availability."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body data-page="doctors">
+    <div data-site-header></div>
+
+    <main>
+      <section class="page-hero">
+        <div class="page-shell page-hero-layout">
+          <div class="page-hero-card reveal">
+            <p class="eyebrow">Doctors</p>
+            <h1>Browse specialists and compare availability.</h1>
+            <p class="lead">
+              Search by doctor type, city, or name, then review clinic details
+              and slot status before booking.
+            </p>
+          </div>
+          <aside class="page-hero-side reveal reveal-delay">
+            <h3>Availability tip</h3>
+            <p class="contact-copy">
+              Pick a date below to see which time slots are currently available
+              or already booked for each doctor.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="page-shell">
+          <div class="filter-bar reveal">
+            <div class="filter-grid">
+              <div class="field">
+                <label for="doctor-search">Search Doctor</label>
+                <input
+                  id="doctor-search"
+                  type="search"
+                  placeholder="Search by name, type, or clinic"
+                />
+              </div>
+              <div class="field">
+                <label for="doctor-type-filter">Doctor Type</label>
+                <select id="doctor-type-filter">
+                  <option value="">All specialties</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="doctor-city-filter">Location</label>
+                <select id="doctor-city-filter">
+                  <option value="">All cities</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="doctor-date-filter">Availability Date</label>
+                <input id="doctor-date-filter" type="date" />
+              </div>
+            </div>
+          </div>
+
+          <div class="results-head">
+            <div>
+              <p class="section-tag">Doctor Directory</p>
+              <h2>Doctors on MediSlot</h2>
+            </div>
+            <p class="results-count" id="doctors-count">Loading doctors...</p>
+          </div>
+
+          <div class="doctor-grid" id="doctors-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="/static/app.js"></script>
+    <script src="/static/doctors.js"></script>
+  </body>
+</html>

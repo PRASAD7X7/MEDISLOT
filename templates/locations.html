@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Locations | MediSlot</title>
+    <meta
+      name="description"
+      content="Find MediSlot clinics by city and area before booking your next appointment."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body data-page="locations">
+    <div data-site-header></div>
+
+    <main>
+      <section class="page-hero">
+        <div class="page-shell page-hero-layout">
+          <div class="page-hero-card reveal">
+            <p class="eyebrow">Locations</p>
+            <h1>Choose a city and area to see available clinics.</h1>
+            <p class="lead">
+              The location system helps patients compare nearby clinics before
+              they choose a doctor and appointment slot.
+            </p>
+          </div>
+          <aside class="page-hero-side reveal reveal-delay">
+            <h3>Clinic view</h3>
+            <p class="contact-copy">
+              Each clinic card shows hours, address, contact number, and the
+              number of doctors currently listed there.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="page-shell">
+          <div class="filter-bar reveal">
+            <div class="filter-grid">
+              <div class="field">
+                <label for="city-filter">Select City</label>
+                <select id="city-filter">
+                  <option value="">All cities</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="area-filter">Select Area</label>
+                <select id="area-filter">
+                  <option value="">All areas</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="results-head">
+            <div>
+              <p class="section-tag">Clinic Directory</p>
+              <h2>Clinic Locations</h2>
+            </div>
+            <p class="results-count" id="clinic-count">Loading clinics...</p>
+          </div>
+
+          <div class="clinic-grid" id="clinic-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="/static/app.js"></script>
+    <script src="/static/locations.js"></script>
+  </body>
+</html>

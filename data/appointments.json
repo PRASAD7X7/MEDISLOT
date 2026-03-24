@@ -1,0 +1,18 @@
+[
+  {
+    "id": "APT-1774181006218-1",
+    "patientName": "Prasad",
+    "phone": "9892654579",
+    "doctorId": "doc-aisha-khan",
+    "doctorName": "Dr. Aisha Khan",
+    "doctorType": "General Physician",
+    "clinicId": "clinic-andheri",
+    "clinicName": "MediCare Central",
+    "city": "Mumbai",
+    "area": "Andheri East",
+    "location": "Mumbai, Andheri East",
+    "date": "2026-03-22",
+    "time": "09:00 AM",
+    "bookedAt": "2026-03-22T17:33:26Z"
+  }
+]
