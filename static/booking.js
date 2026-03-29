@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const recentAppointmentsList = document.getElementById("recent-appointments");
   const feedback = document.getElementById("booking-feedback");
   const params = new URLSearchParams(window.location.search);
+  const activityUrl = form.dataset.activityUrl || "/api/activity";
+  const confirmationPath = form.dataset.confirmationPath || "/confirmation.html";
 
   let doctors = [];
   let clinics = [];
@@ -171,7 +173,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   async function refreshRecentAppointments() {
-    const appointments = await app.request("/api/activity");
+    const appointments = await app.request(activityUrl);
     renderRecentAppointments(appointments);
   }
 
@@ -217,7 +219,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const [{ doctors: doctorData, clinics: clinicData }, appointments] = await Promise.all([
       app.loadBootstrap(),
-      app.request("/api/activity"),
+      app.request(activityUrl),
     ]);
 
     doctors = doctorData;
@@ -289,7 +291,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           },
         });
 
-        window.location.href = `/confirmation.html?id=${encodeURIComponent(appointment.id)}`;
+        window.location.href = `${confirmationPath}?id=${encodeURIComponent(appointment.id)}`;
       } catch (error) {
         showFeedback(error.message);
         await loadAvailability();

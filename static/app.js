@@ -1,6 +1,7 @@
 (function () {
   let bootstrapPromise = null;
   let revealObserver = null;
+  const PATIENT_SESSION_KEY = "medislot_patient_session";
 
   function escapeHtml(value) {
     return String(value ?? "")
@@ -125,6 +126,7 @@
               <a data-page="book" href="/book.html">Book Appointment</a>
               <a data-page="locations" href="/locations.html">Locations</a>
               <a data-page="contact" href="/contact.html">Contact</a>
+              <a data-page="user-login" data-user-link href="/login">Sign In</a>
             </nav>
           </div>
         </header>
@@ -150,6 +152,7 @@
               <a href="/book.html">Book Appointment</a>
               <a href="/locations.html">Locations</a>
               <a href="/contact.html">Contact</a>
+              <a data-user-link href="/login">Patient Sign In</a>
               <a data-admin-link href="/login.html">Admin Login</a>
             </div>
           </div>
@@ -175,6 +178,63 @@
     toggle?.addEventListener("click", () => {
       const open = nav?.classList.toggle("is-open");
       toggle.setAttribute("aria-expanded", String(Boolean(open)));
+    });
+  }
+
+  function readPatientSession(storage) {
+    try {
+      const raw = storage.getItem(PATIENT_SESSION_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  function getPatientSession() {
+    return readPatientSession(window.localStorage) || readPatientSession(window.sessionStorage);
+  }
+
+  function setPatientSession(session, { persist = false } = {}) {
+    const target = persist ? window.localStorage : window.sessionStorage;
+    const fallback = persist ? window.sessionStorage : window.localStorage;
+
+    fallback.removeItem(PATIENT_SESSION_KEY);
+    target.setItem(PATIENT_SESSION_KEY, JSON.stringify(session));
+  }
+
+  function clearPatientSession() {
+    window.localStorage.removeItem(PATIENT_SESSION_KEY);
+    window.sessionStorage.removeItem(PATIENT_SESSION_KEY);
+  }
+
+  async function hydrateUserLink() {
+    let session = null;
+    const links = document.querySelectorAll("[data-user-link]");
+
+    try {
+      const response = await request("/api/patient/session");
+      if (response.authenticated) {
+        session = response.patient;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+    if (!session) {
+      session = getPatientSession();
+    }
+
+    links.forEach((link) => {
+      link.href = "/login";
+
+      if (!session) {
+        link.textContent = link.closest(".site-nav") ? "Sign In" : "Patient Sign In";
+        return;
+      }
+
+      link.href = "/dashboard";
+      link.textContent = link.closest(".site-nav") ? "Dashboard" : "Patient Dashboard";
     });
   }
 
@@ -241,6 +301,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     renderShell();
     bindReveal(document);
+    hydrateUserLink();
     hydrateAdminLink();
   });
 
@@ -253,6 +314,10 @@
     request,
     loadBootstrap,
     bindReveal,
+    getPatientSession,
+    setPatientSession,
+    clearPatientSession,
+    hydrateUserLink,
     hydrateAdminLink,
   };
 })();

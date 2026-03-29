@@ -1,0 +1,145 @@
+{% extends "auth_base.html" %}
+
+{% block title %}Register | MediSlot{% endblock %}
+{% block description %}Create a MediSlot patient account and start booking consultations faster.{% endblock %}
+
+{% block content %}
+  <section class="page-hero">
+    <div class="page-shell auth-page-layout">
+      <section class="auth-showcase">
+        <p class="eyebrow">Patient Registration</p>
+        <h1>Create your MediSlot account in a minute.</h1>
+        <p class="lead">
+          Register once to keep your doctor booking flow organized, secure, and
+          easy to resume from any future visit.
+        </p>
+
+        <div class="auth-badges">
+          <span class="info-pill">SQLite Storage</span>
+          <span class="info-pill">Secure Password Hashing</span>
+          <span class="info-pill">Responsive UI</span>
+        </div>
+
+        <div class="auth-highlights">
+          <article class="auth-feature">
+            <p class="mini-tag">01</p>
+            <h3>Save your details once</h3>
+            <p class="contact-copy">
+              Your name, email, and phone number are stored safely for future
+              sign-ins.
+            </p>
+          </article>
+          <article class="auth-feature">
+            <p class="mini-tag">02</p>
+            <h3>Prevent duplicate accounts</h3>
+            <p class="contact-copy">
+              The backend checks each email before creating a new patient
+              record.
+            </p>
+          </article>
+          <article class="auth-feature">
+            <p class="mini-tag">03</p>
+            <h3>Redirect to sign in</h3>
+            <p class="contact-copy">
+              Once registration succeeds, MediSlot sends you straight to the
+              login page.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="form-card auth-panel">
+        <div class="split-head">
+          <div>
+            <p class="section-tag">Get Started</p>
+            <h2>Register</h2>
+          </div>
+        </div>
+
+        <p class="tiny-note">
+          Already registered?
+          <a class="auth-link" href="{{ url_for('login') }}">Sign in here</a>.
+        </p>
+
+        {% if page_error %}
+          <div class="message-box error">{{ page_error }}</div>
+        {% endif %}
+        <div class="message-box error hidden" data-client-feedback></div>
+
+        <form class="auth-form" method="post" action="{{ url_for('register') }}" data-register-form novalidate>
+          <div class="form-grid">
+            <div class="field field-full">
+              <label for="name">Full Name</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Enter your full name"
+                value="{{ form_values.get('name', '') }}"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                value="{{ form_values.get('email', '') }}"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="+91 98765 43210"
+                value="{{ form_values.get('phone', '') }}"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="At least 6 characters"
+                minlength="6"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="confirm_password">Confirm Password</label>
+              <input
+                id="confirm_password"
+                name="confirm_password"
+                type="password"
+                placeholder="Repeat your password"
+                minlength="6"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="helper-row">
+            <span class="tiny-note">All fields are required for registration.</span>
+            <span class="tiny-note">Passwords are stored as hashes, not plain text.</span>
+          </div>
+
+          <div class="button-row">
+            <button class="button button-primary" type="submit">Create Account</button>
+            <a class="button button-secondary" href="{{ url_for('login') }}">Go to Sign In</a>
+          </div>
+        </form>
+      </section>
+    </div>
+  </section>
+{% endblock %}

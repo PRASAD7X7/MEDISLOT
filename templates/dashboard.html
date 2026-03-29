@@ -1,0 +1,116 @@
+{% extends "auth_base.html" %}
+
+{% block title %}Dashboard | MediSlot{% endblock %}
+{% block description %}Patient dashboard for signed-in MediSlot users.{% endblock %}
+
+{% block content %}
+  <section class="page-hero">
+    <div class="page-shell dashboard-layout">
+      <section class="page-hero-card">
+        <p class="eyebrow">Patient Dashboard</p>
+        <h1>Welcome back, {{ current_patient["name"] }}.</h1>
+        <p class="lead">
+          You are signed in successfully. From here you can move into the rest
+          of your doctor booking experience.
+        </p>
+        <div class="button-row">
+          <a class="button button-primary" href="{{ url_for('book') }}">Book Appointment</a>
+          <a class="button button-secondary" href="{{ url_for('dashboard') }}">Refresh Dashboard</a>
+          <form class="inline-form" action="{{ url_for('logout') }}" method="post">
+            <button class="button button-secondary" type="submit">Log Out</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="summary-card">
+          <p class="section-tag">Profile</p>
+          <h3>Your account details</h3>
+          <ul class="profile-list">
+            <li>
+              <strong>Full Name</strong>
+              <span>{{ current_patient["name"] }}</span>
+            </li>
+            <li>
+              <strong>Email</strong>
+              <span>{{ current_patient["email"] }}</span>
+            </li>
+            <li>
+              <strong>Phone</strong>
+              <span>{{ current_patient["phone"] }}</span>
+            </li>
+          </ul>
+        </article>
+
+        <article class="summary-card">
+          <p class="section-tag">Auth Status</p>
+          <h3>Login granted</h3>
+          <p class="contact-copy">
+            Your session was created after Flask verified the password hash
+            stored in the SQLite database.
+          </p>
+        </article>
+
+        <article class="summary-card">
+          <p class="section-tag">Next Steps</p>
+          <h3>Your booking flow is ready</h3>
+          <p class="contact-copy">
+            Use the protected appointment page to book consultations with your
+            signed-in patient details already filled in.
+          </p>
+        </article>
+      </section>
+
+      <section class="dashboard-actions">
+        <article class="action-card">
+          <p class="section-tag">Register Flow</p>
+          <h3>Protected duplicate emails</h3>
+          <p class="contact-copy">
+            Registration blocks repeated emails so each patient account stays
+            unique.
+          </p>
+        </article>
+
+        <article class="action-card">
+          <p class="section-tag">Booking Flow</p>
+          <h3>Account-linked appointments</h3>
+          <p class="contact-copy">
+            Your new bookings are now connected to the signed-in patient
+            account and shown back inside the dashboard.
+          </p>
+        </article>
+
+        <article class="action-card">
+          <p class="section-tag">Sign In Flow</p>
+          <h3>Server-side verification</h3>
+          <p class="contact-copy">
+            Login only succeeds when the submitted password matches the saved
+            hash in the database.
+          </p>
+        </article>
+      </section>
+
+      <section class="summary-card">
+        <p class="section-tag">My Appointments</p>
+        <h3>Recent bookings</h3>
+        {% if appointments %}
+          <ul class="profile-list">
+            {% for appointment in appointments %}
+              <li>
+                <strong>{{ appointment["doctorName"] }} at {{ appointment["clinicName"] }}</strong>
+                <span>{{ appointment["date"] }} at {{ appointment["time"] }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="contact-copy">
+            No appointments have been booked on this account yet.
+          </p>
+          <div class="button-row">
+            <a class="button button-primary" href="{{ url_for('book') }}">Book Your First Appointment</a>
+          </div>
+        {% endif %}
+      </section>
+    </div>
+  </section>
+{% endblock %}

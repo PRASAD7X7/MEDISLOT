@@ -1,4 +1,4 @@
 @echo off
 cd /d "%~dp0"
 start "" powershell -NoProfile -Command "Start-Sleep -Seconds 2; Start-Process 'http://127.0.0.1:8000/'"
-python server.py
+python app.py

@@ -1,0 +1,139 @@
+{% extends "auth_base.html" %}
+
+{% block title %}Book Appointment | MediSlot{% endblock %}
+{% block description %}Book a doctor appointment through your signed-in MediSlot patient account.{% endblock %}
+
+{% block extra_scripts %}
+  <script src="{{ url_for('static', filename='booking.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+  <section class="page-hero">
+    <div class="page-shell page-hero-layout">
+      <div class="page-hero-card reveal">
+        <p class="eyebrow">Protected Booking</p>
+        <h1>Reserve your clinic visit from your patient account.</h1>
+        <p class="lead">
+          Your account details are already loaded, so you can move straight into
+          choosing the doctor, location, date, and time slot.
+        </p>
+      </div>
+      <aside class="page-hero-side reveal reveal-delay">
+        <h3>Signed in as</h3>
+        <p class="contact-copy">
+          {{ current_patient["name"] }}<br />
+          {{ current_patient["email"] }}
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="page-shell booking-layout">
+      <div class="form-card reveal">
+        <div class="split-head">
+          <div>
+            <p class="section-tag">Appointment Form</p>
+            <h2>Patient Details</h2>
+          </div>
+          <p class="tiny-note">Your account information is used for booking.</p>
+        </div>
+
+        <div class="message-box error hidden" id="booking-feedback"></div>
+
+        <form
+          id="booking-form"
+          data-confirmation-path="{{ url_for('booking_confirmation') }}"
+          data-activity-url="{{ url_for('api_patient_appointments') }}"
+        >
+          <div class="form-grid">
+            <div class="field">
+              <label for="patient-name">Patient Name</label>
+              <input
+                id="patient-name"
+                name="patientName"
+                type="text"
+                value="{{ current_patient['name'] }}"
+                readonly
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="phone-number">Phone Number</label>
+              <input
+                id="phone-number"
+                name="phone"
+                type="tel"
+                value="{{ current_patient['phone'] }}"
+                readonly
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="doctor-type">Select Doctor Type</label>
+              <select id="doctor-type" name="doctorType" required>
+                <option value="">Choose a specialty</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="location-select">Select Location</label>
+              <select id="location-select" name="location" required>
+                <option value="">Choose a clinic location</option>
+              </select>
+            </div>
+            <div class="field field-full">
+              <label for="doctor-select">Select Doctor</label>
+              <select id="doctor-select" name="doctorId" required>
+                <option value="">Choose a doctor</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="appointment-date">Select Date</label>
+              <input id="appointment-date" name="date" type="date" required />
+            </div>
+            <div class="field">
+              <label for="time-slot">Select Time Slot</label>
+              <select id="time-slot" name="time" required>
+                <option value="">Choose a time slot</option>
+              </select>
+            </div>
+            <div class="field field-full">
+              <label>Available Time Slots</label>
+              <div class="slot-grid" id="slot-grid"></div>
+              <p class="slot-help">
+                Booked slots are disabled automatically based on the selected
+                doctor and date.
+              </p>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button class="button button-primary" type="submit">Submit Booking</button>
+            <a class="button button-secondary" href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+          </div>
+        </form>
+      </div>
+
+      <aside class="summary-stack">
+        <div class="summary-card reveal reveal-delay">
+          <p class="section-tag">Booking Summary</p>
+          <h3>Selected appointment</h3>
+          <ul class="summary-list" id="booking-summary">
+            <li><span>Doctor</span><strong>Not selected</strong></li>
+            <li><span>Clinic</span><strong>Not selected</strong></li>
+            <li><span>Date</span><strong>Not selected</strong></li>
+            <li><span>Time</span><strong>Not selected</strong></li>
+          </ul>
+        </div>
+
+        <div class="summary-card reveal reveal-delay-2">
+          <p class="section-tag">My Recent Bookings</p>
+          <h3>Saved to your account</h3>
+          <ul class="list-clean" id="recent-appointments">
+            <li><span>No appointments yet.</span><strong>Waiting</strong></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+{% endblock %}

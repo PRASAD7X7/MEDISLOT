@@ -1,108 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Login | MediSlot</title>
-    <meta
-      name="description"
-      content="Sign in to the MediSlot admin area to review stored appointment data."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/static/styles.css" />
-  </head>
-  <body data-page="login">
-    <div data-site-header></div>
+{% extends "auth_base.html" %}
 
-    <main>
-      <section class="page-hero">
-        <div class="page-shell page-hero-layout">
-          <div class="page-hero-card reveal">
-            <p class="eyebrow">Admin Login</p>
-            <h1>Sign in to access protected appointment data.</h1>
-            <p class="lead">
-              The admin area is protected by a server-side session cookie. Use
-              your configured MediSlot admin credentials to continue.
-            </p>
-          </div>
-          <aside class="page-hero-side reveal reveal-delay">
-            <h3>Protected access</h3>
+{% block title %}Sign In | MediSlot{% endblock %}
+{% block description %}Sign in to your MediSlot patient account with your email and password.{% endblock %}
+
+{% block content %}
+  <section class="page-hero">
+    <div class="page-shell auth-page-layout">
+      <section class="auth-showcase">
+        <p class="eyebrow">Patient Sign In</p>
+        <h1>Access your MediSlot account securely.</h1>
+        <p class="lead">
+          Sign in with your registered email and password to reach your patient
+          dashboard and continue your booking journey.
+        </p>
+
+        <div class="auth-badges">
+          <span class="info-pill">Flask Backend</span>
+          <span class="info-pill">SQLite Database</span>
+          <span class="info-pill">Secure Hash Check</span>
+        </div>
+
+        <div class="auth-highlights">
+          <article class="auth-feature">
+            <p class="mini-tag">01</p>
+            <h3>Verified server-side</h3>
             <p class="contact-copy">
-              Admin login unlocks the full appointment list and keeps patient
-              booking data separated from the public-facing pages.
+              Login succeeds only when your credentials match a saved patient
+              record.
             </p>
-          </aside>
+          </article>
+          <article class="auth-feature">
+            <p class="mini-tag">02</p>
+            <h3>Helpful feedback</h3>
+            <p class="contact-copy">
+              Invalid credentials show a clear error message instead of a blank
+              failure.
+            </p>
+          </article>
+          <article class="auth-feature">
+            <p class="mini-tag">03</p>
+            <h3>Direct dashboard access</h3>
+            <p class="contact-copy">
+              Once authenticated, you are redirected to your patient dashboard.
+            </p>
+          </article>
         </div>
       </section>
 
-      <section class="section">
-        <div class="page-shell booking-layout">
-          <div class="form-card reveal">
-            <div class="split-head">
-              <div>
-                <p class="section-tag">Admin Authentication</p>
-                <h2>Log in</h2>
-              </div>
+      <section class="form-card auth-panel">
+        <div class="split-head">
+          <div>
+            <p class="section-tag">Welcome Back</p>
+            <h2>Sign In</h2>
+          </div>
+        </div>
+
+        <p class="tiny-note">
+          Need an account first?
+          <a class="auth-link" href="{{ url_for('register') }}">Create one here</a>.
+        </p>
+
+        {% if page_error %}
+          <div class="message-box error">{{ page_error }}</div>
+        {% endif %}
+
+        <form class="auth-form" method="post" action="{{ url_for('login') }}">
+          <input type="hidden" name="next" value="{{ request.args.get('next', '') }}" />
+          <div class="form-grid">
+            <div class="field field-full">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                value="{{ form_values.get('email', '') }}"
+                required
+              />
             </div>
 
-            <div class="message-box error hidden" id="login-feedback"></div>
-
-            <form id="login-form">
-              <div class="form-grid">
-                <div class="field field-full">
-                  <label for="admin-username">Username</label>
-                  <input id="admin-username" name="username" type="text" autocomplete="username" required />
-                </div>
-                <div class="field field-full">
-                  <label for="admin-password">Password</label>
-                  <input
-                    id="admin-password"
-                    name="password"
-                    type="password"
-                    autocomplete="current-password"
-                    required
-                  />
-                </div>
-              </div>
-              <div class="button-row">
-                <button class="button button-primary" type="submit">Log In</button>
-                <a class="button button-secondary" href="/index.html">Back to Home</a>
-              </div>
-            </form>
+            <div class="field field-full">
+              <label for="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Enter your password"
+                minlength="6"
+                required
+              />
+            </div>
           </div>
 
-          <aside class="summary-stack">
-            <div class="summary-card reveal reveal-delay">
-              <p class="section-tag">What Admin Can See</p>
-              <h3>Protected appointment insights</h3>
-              <ul class="list-clean">
-                <li><span>Full appointment list</span><strong>Protected</strong></li>
-                <li><span>Patient names and phone numbers</span><strong>Protected</strong></li>
-                <li><span>Clinic-level booking overview</span><strong>Protected</strong></li>
-              </ul>
-            </div>
+          <div class="helper-row">
+            <span class="tiny-note">Authentication is handled by the Flask backend.</span>
+            <a class="auth-link" href="{{ url_for('register') }}">New patient registration</a>
+          </div>
 
-            <div class="summary-card reveal reveal-delay-2">
-              <p class="section-tag">Security Note</p>
-              <h3>Server-side session</h3>
-              <p class="contact-copy">
-                Login state is stored in a server-side session and an HTTP-only
-                cookie for the current browser session.
-              </p>
-            </div>
-          </aside>
-        </div>
+          <div class="button-row">
+            <button class="button button-primary" type="submit">Sign In</button>
+            <a class="button button-secondary" href="{{ url_for('register') }}">Register</a>
+          </div>
+        </form>
       </section>
-    </main>
-
-    <div data-site-footer></div>
-
-    <script src="/static/app.js"></script>
-    <script src="/static/login.js"></script>
-  </body>
-</html>
+    </div>
+  </section>
+{% endblock %}

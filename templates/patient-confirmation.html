@@ -1,0 +1,84 @@
+{% extends "auth_base.html" %}
+
+{% block title %}Booking Confirmation | MediSlot{% endblock %}
+{% block description %}View your confirmed MediSlot appointment after booking from your patient account.{% endblock %}
+
+{% block content %}
+  <section class="page-hero">
+    <div class="page-shell page-hero-layout">
+      <div class="page-hero-card">
+        <p class="eyebrow">Confirmation</p>
+        <h1>Your booking details are ready.</h1>
+        <p class="lead">
+          MediSlot has saved your appointment under your signed-in patient
+          account.
+        </p>
+      </div>
+      <aside class="page-hero-side">
+        <h3>Account linked</h3>
+        <p class="contact-copy">
+          This confirmation is only shown for appointments that belong to
+          {{ current_patient["email"] }}.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="page-shell">
+      {% if appointment %}
+        <div class="success-card">
+          <div class="success-mark">+</div>
+          <p class="section-tag">Booking Successful</p>
+          <h2>Your appointment has been booked successfully</h2>
+          <p class="contact-copy">
+            MediSlot saved your appointment and blocked the selected slot.
+          </p>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <p class="mini-tag">Doctor Name</p>
+              <h3>{{ appointment["doctorName"] }}</h3>
+            </div>
+            <div class="detail-card">
+              <p class="mini-tag">Clinic Name</p>
+              <h3>{{ appointment["clinicName"] }}</h3>
+            </div>
+            <div class="detail-card">
+              <p class="mini-tag">Date</p>
+              <h3>{{ appointment["date"] }}</h3>
+            </div>
+            <div class="detail-card">
+              <p class="mini-tag">Time</p>
+              <h3>{{ appointment["time"] }}</h3>
+            </div>
+          </div>
+          <div class="button-row">
+            <a class="button button-primary" href="{{ url_for('book') }}">Book Another Appointment</a>
+            <a class="button button-secondary" href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+          </div>
+        </div>
+      {% elif appointment_id %}
+        <div class="notice-card">
+          <h2>Appointment not found</h2>
+          <p class="contact-copy">
+            The requested booking could not be found for your account.
+          </p>
+          <div class="button-row">
+            <a class="button button-primary" href="{{ url_for('book') }}">Book Appointment</a>
+            <a class="button button-secondary" href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+          </div>
+        </div>
+      {% else %}
+        <div class="notice-card">
+          <h2>No appointment was selected.</h2>
+          <p class="contact-copy">
+            Book an appointment first to view a confirmation page.
+          </p>
+          <div class="button-row">
+            <a class="button button-primary" href="{{ url_for('book') }}">Book Appointment</a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}

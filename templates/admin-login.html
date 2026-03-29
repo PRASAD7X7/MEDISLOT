@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login | MediSlot</title>
+    <meta
+      name="description"
+      content="Sign in to the MediSlot admin area to review stored appointment data."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body data-page="login">
+    <div data-site-header></div>
+
+    <main>
+      <section class="page-hero">
+        <div class="page-shell page-hero-layout">
+          <div class="page-hero-card reveal">
+            <p class="eyebrow">Admin Login</p>
+            <h1>Sign in to access protected appointment data.</h1>
+            <p class="lead">
+              The admin area is protected by a server-side session cookie. Use
+              your configured MediSlot admin credentials to continue.
+            </p>
+          </div>
+          <aside class="page-hero-side reveal reveal-delay">
+            <h3>Protected access</h3>
+            <p class="contact-copy">
+              Admin login unlocks the full appointment list and keeps patient
+              booking data separated from the public-facing pages.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="page-shell booking-layout">
+          <div class="form-card reveal">
+            <div class="split-head">
+              <div>
+                <p class="section-tag">Admin Authentication</p>
+                <h2>Log in</h2>
+              </div>
+            </div>
+
+            <p class="tiny-note">
+              Patient access uses the separate
+              <a class="inline-link" href="/sign-in.html">patient sign-in page</a>.
+            </p>
+
+            <div class="message-box error hidden" id="login-feedback"></div>
+
+            <form id="login-form">
+              <div class="form-grid">
+                <div class="field field-full">
+                  <label for="admin-username">Username</label>
+                  <input id="admin-username" name="username" type="text" autocomplete="username" required />
+                </div>
+                <div class="field field-full">
+                  <label for="admin-password">Password</label>
+                  <input
+                    id="admin-password"
+                    name="password"
+                    type="password"
+                    autocomplete="current-password"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="button-row">
+                <button class="button button-primary" type="submit">Log In</button>
+                <a class="button button-secondary" href="/index.html">Back to Home</a>
+              </div>
+            </form>
+          </div>
+
+          <aside class="summary-stack">
+            <div class="summary-card reveal reveal-delay">
+              <p class="section-tag">What Admin Can See</p>
+              <h3>Protected appointment insights</h3>
+              <ul class="list-clean">
+                <li><span>Full appointment list</span><strong>Protected</strong></li>
+                <li><span>Patient names and phone numbers</span><strong>Protected</strong></li>
+                <li><span>Clinic-level booking overview</span><strong>Protected</strong></li>
+              </ul>
+            </div>
+
+            <div class="summary-card reveal reveal-delay-2">
+              <p class="section-tag">Security Note</p>
+              <h3>Server-side session</h3>
+              <p class="contact-copy">
+                Login state is stored in a server-side session and an HTTP-only
+                cookie for the current browser session.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="/static/app.js"></script>
+    <script src="/static/login.js"></script>
+  </body>
+</html>
